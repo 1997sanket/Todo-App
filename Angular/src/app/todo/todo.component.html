@@ -1,0 +1,52 @@
+
+<br>
+<br>
+
+<div *ngIf="error" class="container">
+  <div class="alert alert-dismissible alert-danger">
+    <!-- <button type="button" class="btn-close" data-bs-dismiss="alert"></button> -->
+    <strong>{{error}}.</strong> 
+  </div>
+</div>
+
+<div class="card text-white bg-info mb-3" >
+  <div class="card-header">Todo</div>
+  <div class="card-body">
+    
+    <div class="container">
+
+      <form (ngSubmit)="!todoForm.invalid && saveTodo()" #todoForm="ngForm">
+        <fieldset>
+         
+          <!-- <div class="form-group">
+            <label for="exampleInputPassword1" class="form-label mt-4">Id</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div> -->
+          <div class="alert alert-danger" *ngIf="(todoForm.dirty || todoForm.touched) && todoForm.invalid">Enter valid values !</div>
+
+          <div class="form-group">
+            <label for="Description" class="form-label mt-4">Description</label>
+            <input type="email" class="form-control" [(ngModel)]="todo.description" name="description" autofocus required>
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+          </div>
+
+          <!-- <div class="form-group">
+            <label for="exampleInputPassword1" class="form-label mt-4">Done ?</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div> -->
+
+          <div class="form-group">
+            <label for="TargetDate" class="form-label mt-4">Target Date</label>
+            <input type="date" class="form-control" name="targetDate" 
+              [ngModel]="todo.targetDate | date:'yyyy-MM-dd'" 
+               (ngModelChange)="todo.targetDate = $event" required>
+          </div>
+
+          <button type="submit" class="btn btn-dark" [disabled]="todoForm.invalid">Save</button>
+        </fieldset>
+      </form>
+
+    </div>
+
+  </div>
+</div>

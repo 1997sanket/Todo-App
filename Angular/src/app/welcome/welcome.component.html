@@ -1,0 +1,19 @@
+
+<br><br>
+<h1 class="alert alert-dismissible alert-success">Welcome {{name}} !!</h1>
+
+
+<div class="container">
+  You can manage your todos <a routerLink="/todos"> <span class="badge bg-success">Here</span></a>
+</div>
+
+<br><br>
+<div>
+  <button (click)="getWelcomeMessage()" class="btn btn-info">Click to get Welcome message from SPring</button>
+</div>
+
+<div>
+  <h2 *ngIf="msg"> Your welcome message is : {{msg}}</h2>
+</div>
+
+<br><br>
