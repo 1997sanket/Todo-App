@@ -1,0 +1,19 @@
+1. When we enable Spring Security, Spring provides us with form based authentication with username and password.
+   So after entering correct username and password, Spring makes a session on the server and returns a cookie.
+   Now for every request this cookie is sent to the spring, and thus we can access all apis. But the session is maintained 
+   on the server, which is not very optimal. That's why we can go with Headers.
+
+2. In Headers based authentication, for every request to the endpoint we are sending username and password in the header.
+
+2. We can use Postman where we can put username and password
+   and postman sends a string in the Authorization headers in which username and password is Base 64 encoded
+	Eg : Basic esbasb1212
+
+3. Now we can do the same when sending request from Angular, we just have to send Headers along with every request.
+
+
+4. But when Headers are included in a request, there is something called as Pre request request sent to the server, and the \
+   method for this request is OPTIONS.
+
+5. So in Spring we need to override "WebSecurityConfigurerAdapters(HttpSecurity http)" method and do necessary changes
+	(look in the code)

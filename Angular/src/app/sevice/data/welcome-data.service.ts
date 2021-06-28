@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HelloWorldBean } from 'src/app/model/hello-world-bean';
 
@@ -8,9 +8,25 @@ import { HelloWorldBean } from 'src/app/model/hello-world-bean';
 })
 export class WelcomeDataService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public getWelcomeMessage() {
-    return this.http.get<HelloWorldBean>('http://localhost:8080/hello');
+    let basicAuthHeaderString = this.createBasicAuthHeader();
+
+    let headers = new HttpHeaders({
+      Authorization: basicAuthHeaderString
+    });
+
+
+    return this.http.get<HelloWorldBean>('http://localhost:8080/hello', { headers }); //Sending header to http call
+  }
+
+  createBasicAuthHeader() {
+    let username = 'root';
+    let password = 'root';
+
+    let basicAuthHeaderString = 'Basic ' + window.btoa(username + ':' + password);  //Because we have enabled Basic Spring authentication
+
+    return basicAuthHeaderString;
   }
 }
