@@ -17,3 +17,26 @@
 
 5. So in Spring we need to override "WebSecurityConfigurerAdapters(HttpSecurity http)" method and do necessary changes
 	(look in the code)
+
+6. Problem with using BasicAuth of Spring Security in headers is, there is no expiration time and thus user can use it for forever.
+	Also there is no user details present, only userId and password.
+
+7. Advantages of using JWT
+	- It has three parts - header, payload, signature
+	- header contains Hash Algorithm
+	- payload can contain user details (maybe for further authorization)
+	- signature contains base64 encoded header, payload and can even contain a base64 encoded SECRET_KEY which
+		is present at Server(very important)
+	- It also has a time limit
+
+8. Typically when a user logs in, request goes to server, server creates a JWT and returns it back.
+	Now for every subsequent requests, user sends this token to the server to access apis.
+	- WHen the time of the token is about to finish, concept of refreshTokens comes into picture, where we get a new refreshed token
+		back
+	- JWT is not required for the first request to the server.
+	
+	tokenEg - "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJpbjI4bWludXRlcyIsImV4cCI6MTYyNTUxNTUyNSwiaWF0IjoxNjI0OTEwNzI1fQ.yyIlYYsTqfiL6BBzT8BC_P6XykQakTXADTrDFKr7oZWqDygTARicVCLPiB8Idigl57pKTdLumptXfYcluDt1tA"
+
+9. to get JWT token url = http:localhost:8080/authenticate - POST request - body - { "username" : "in28Minutes", "password" : "dummy"}
+
+10. To get a refreshed token url - http:localhost:8080/refresh (remember to sen Authorization header with JWT token)

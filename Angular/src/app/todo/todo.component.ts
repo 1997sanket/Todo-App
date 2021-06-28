@@ -28,7 +28,7 @@ export class TodoComponent implements OnInit {
   }
 
   populateInputFields(id) { 
-    this.service.getTodoById(id, "sanket").subscribe(
+    this.service.getTodoById(id, sessionStorage.getItem('authenticatedUser')).subscribe(
       
       data => {
         this.todo = data;
@@ -44,16 +44,16 @@ export class TodoComponent implements OnInit {
 
     //If updating a todo then do this 
     if(this.todo.id != -1) {
-      this.service.updateTodo("sanket", this.todo).subscribe(
+      this.service.updateTodo(sessionStorage.getItem('authenticatedUser'), this.todo).subscribe(
         data => {
           console.log(data);
           this.router.navigate(['todos']);
         }
       );
   
-    } else {
+    } else if(this.todo.id == -1){
 
-      this.service.createTodo('sanket', this.todo).subscribe(
+      this.service.createTodo(sessionStorage.getItem('authenticatedUser'), this.todo).subscribe(
         data => {
           console.log(data);
           this.router.navigate(['todos']);

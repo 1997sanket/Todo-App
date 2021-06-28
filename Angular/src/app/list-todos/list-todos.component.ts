@@ -37,7 +37,7 @@ export class ListTodosComponent implements OnInit {
   }
 
   refreshAllTodos() {
-    this.service.getAllTodos('sanket').subscribe(
+    this.service.getAllTodos(sessionStorage.getItem('authenticatedUser')).subscribe(
       data => {
         this.todos = data;
       }
@@ -45,7 +45,7 @@ export class ListTodosComponent implements OnInit {
   }
 
   onDelete(id) {
-    this.service.deleteById('sanket', id).subscribe(
+    this.service.deleteById(sessionStorage.getItem('authenticatedUser'), id).subscribe(
       data => {
         this.refreshAllTodos();
       }

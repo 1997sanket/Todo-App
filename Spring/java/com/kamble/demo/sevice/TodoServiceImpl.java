@@ -20,12 +20,12 @@ import com.kamble.demo.model.Todo;
 public class TodoServiceImpl implements TodoService {
 	
 	private static List<Todo> todos = new ArrayList<>();
-	private static int counter;
+	private static Long counter = 0L;
 	
 	static {
-		todos.add(new Todo(++counter, "Learn Angular", false, new Date()));
-		todos.add(new Todo(++counter, "Learn Spring", false, new Date()));
-		todos.add(new Todo(++counter, "Learn DSA", false, new Date()));
+		todos.add(new Todo(++counter, "root", "Learn Angular", false, new Date()));
+		todos.add(new Todo(++counter, "root", "Learn Spring", false, new Date()));
+		todos.add(new Todo(++counter, "root", "Learn DSA", false, new Date()));
 	}
 
 	@Override

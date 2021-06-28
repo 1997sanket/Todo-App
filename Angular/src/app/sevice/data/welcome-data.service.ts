@@ -11,14 +11,14 @@ export class WelcomeDataService {
   constructor(private http: HttpClient) { }
 
   public getWelcomeMessage() {
-    let basicAuthHeaderString = this.createBasicAuthHeader();
+    // let basicAuthHeaderString = this.createBasicAuthHeader();
 
-    let headers = new HttpHeaders({
-      Authorization: basicAuthHeaderString
-    });
+    // let headers = new HttpHeaders({
+    //   Authorization: basicAuthHeaderString
+    // });
 
 
-    return this.http.get<HelloWorldBean>('http://localhost:8080/hello', { headers }); //Sending header to http call
+    return this.http.get<HelloWorldBean>('http://localhost:8080/hello' /*, { headers } */ ); //Sending header to http call
   }
 
   createBasicAuthHeader() {

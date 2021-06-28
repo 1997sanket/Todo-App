@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.kamble.demo.basicAuth;
+package com.kamble.basicAuth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
